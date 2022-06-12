@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/harbour_backend_war_exploded";
+const URL = "http://http://localhost:8080/eksamen_war_exploded";
 // const URL = "https://eskecphbusiness.dk/harbour";
 
 function handleHttpErrors(res) {
