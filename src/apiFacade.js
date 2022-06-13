@@ -1,4 +1,4 @@
-const URL = "http://http://localhost:8080/eksamen_war_exploded";
+const URL = "http://localhost:8080/eksamen_war_exploded";
 // const URL = "https://eskecphbusiness.dk/harbour";
 
 function handleHttpErrors(res) {
@@ -21,6 +21,51 @@ function apiFacade() {
       .then((res) => {
         setToken(res.token);
       });
+  };
+
+  const fetchRentalsByUserId = (username) => {
+    const options = makeOptions("GET", false);
+    return fetch(URL + `/api/user/rentals/${username}`, options).then(
+      handleHttpErrors
+    );
+  };
+
+  const fetchHouseByRentalId = (id) => {
+    const options = makeOptions("GET", false);
+    return fetch(URL + `/api/rental/house/${id}`, options).then(
+      handleHttpErrors
+    );
+  };
+
+  const createTenant = (tenant) => {
+    const options = makeOptions("POST", false, {
+      name: tenant.name,
+      phone: tenant.phone,
+      job: tenant.job,
+      userName: tenant.userName,
+      userPass: tenant.userPass,
+    });
+    return fetch(URL + "/api/user", options).then(handleHttpErrors);
+  };
+
+  const createRental = (rental) => {
+    const options = makeOptions("POST", false, {
+      startDate: rental.startDate,
+      endDate: rental.endDate,
+      priceAnnual: rental.priceAnnual,
+      deposit: rental.deposit,
+      contactPerson: rental.contactPerson,
+    });
+    return fetch(URL + "/api/rental", options).then(handleHttpErrors);
+  };
+
+  const createHouse = (house) => {
+    const options = makeOptions("POST", false, {
+      address: house.address,
+      city: house.city,
+      numberOfRooms: house.numberOfRooms,
+    });
+    return fetch(URL + "/api/house", options).then(handleHttpErrors);
   };
 
   const fetchUserData = (role) => {
@@ -137,6 +182,11 @@ function apiFacade() {
     fetchOwnersByBoatId,
     removeBoatFromHarbour,
     addBoatToHarbour,
+    fetchRentalsByUserId,
+    fetchHouseByRentalId,
+    createTenant,
+    createRental,
+    createHouse,
   };
 }
 

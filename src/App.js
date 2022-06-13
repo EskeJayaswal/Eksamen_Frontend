@@ -2,17 +2,17 @@ import Navbar from "./components/Navbar";
 import "./styling/App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Admin from "./pages/Admin";
-import User from "./pages/User";
 import Welcome from "./pages/Welcome";
 import Data from "./pages/Data";
 import Login from "./pages/Login";
+import Tenant from "./pages/Tenant";
 import { useEffect, useState } from "react";
 import facade from "./apiFacade";
-import Harbour from "./pages/Harbour";
-import Boat from "./pages/Boat";
-import Harbourboats from "./pages/Harbourboats";
-import Boatowners from "./pages/Boatowners";
 import jwtDecode from "jwt-decode";
+import Housedetails from "./pages/Housedetails";
+import CreateTenant from "./pages/CreateTenant";
+import CreateRental from "./pages/CreateRental";
+import CreateHouse from "./pages/CreateHouse";
 
 function App() {
   const init = { username: "", password: "" };
@@ -48,16 +48,24 @@ function App() {
   return (
     <div className="App">
       <Router basename="/sem3ca2">
-        <Navbar />
+        <Navbar username={loginCredentials.username} />
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/harbour" element={<Harbour />} />
+          {loggedIn === true ? (
+            <Route path="/tenant/:username" element={<Tenant />} />
+          ) : null}
+          {loggedIn === true ? (
+            <Route path="createtenant" element={<CreateTenant role={role} />} />
+          ) : null}
+          {loggedIn === true ? (
+            <Route path="createrental" element={<CreateRental role={role} />} />
+          ) : null}
+          {loggedIn === true ? (
+            <Route path="createhouse" element={<CreateHouse role={role} />} />
+          ) : null}
+          <Route path="/housedetails/:id" element={<Housedetails />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/data" element={<Data />} />
-          <Route path="/boat" element={<Boat role={role} />} />
-          <Route path="/harbourboats/:id" element={<Harbourboats />} />
-          <Route path="/boatowners/:id" element={<Boatowners />} />
           <Route
             path="/login"
             element={

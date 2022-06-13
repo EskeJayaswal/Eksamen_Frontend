@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "../styling/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ username }) => {
   return (
     <div>
       <nav>
@@ -13,13 +13,16 @@ const Navbar = () => {
           <Link to="/login">Login</Link>{" "}
         </li>
         <li>
-          <Link to="/user">Users</Link>{" "}
+          <Link to={`/tenant/${username}`}>Tenants</Link>{" "}
         </li>
         <li>
-          <Link to="/harbour">Harbours</Link>{" "}
+          <Link to={`/createtenant`}>Create Tenant</Link>{" "}
         </li>
         <li>
-          <Link to="/boat">Boats</Link>{" "}
+          <Link to={`/createrental`}>Create Rental</Link>{" "}
+        </li>
+        <li>
+          <Link to={`/createhouse`}>Create House</Link>{" "}
         </li>
         {/* <li className='data'><Link to="/data">Data</Link></li> */}
       </nav>
