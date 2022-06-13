@@ -13,6 +13,8 @@ import Housedetails from "./pages/Housedetails";
 import CreateTenant from "./pages/CreateTenant";
 import CreateRental from "./pages/CreateRental";
 import CreateHouse from "./pages/CreateHouse";
+import House from "./pages/House";
+import Tenantdetails from "./pages/Tenantdetails";
 
 function App() {
   const init = { username: "", password: "" };
@@ -63,7 +65,10 @@ function App() {
           {loggedIn === true ? (
             <Route path="createhouse" element={<CreateHouse role={role} />} />
           ) : null}
+          <Route path="/house" element={<House />} />
           <Route path="/housedetails/:id" element={<Housedetails />} />
+          <Route path="/tenantdetails/:id" element={<Tenantdetails />} />
+
           <Route path="/admin" element={<Admin />} />
           <Route path="/data" element={<Data />} />
           <Route

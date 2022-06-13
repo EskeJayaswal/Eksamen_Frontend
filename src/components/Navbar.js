@@ -24,6 +24,9 @@ const Navbar = ({ username }) => {
         <li>
           <Link to={`/createhouse`}>Create House</Link>{" "}
         </li>
+        <li>
+          <Link to={`/house`}>Houses</Link>{" "}
+        </li>
         {/* <li className='data'><Link to="/data">Data</Link></li> */}
       </nav>
       <Outlet />

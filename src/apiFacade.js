@@ -23,6 +23,18 @@ function apiFacade() {
       });
   };
 
+  const fetchHouses = () => {
+    const options = makeOptions("GET", false);
+    return fetch(URL + "/api/house", options).then(handleHttpErrors);
+  };
+
+  const fetchTenantsByHouseId = (id) => {
+    const options = makeOptions("GET", false);
+    return fetch(URL + `/api/house/users/${id}`, options).then(
+      handleHttpErrors
+    );
+  };
+
   const fetchRentalsByUserId = (username) => {
     const options = makeOptions("GET", false);
     return fetch(URL + `/api/user/rentals/${username}`, options).then(
@@ -178,6 +190,7 @@ function apiFacade() {
     fetchOwners,
     fetchHarbours,
     fetchBoats,
+    fetchHouses,
     fetchBoatsByHarbourId,
     fetchOwnersByBoatId,
     removeBoatFromHarbour,
@@ -187,6 +200,7 @@ function apiFacade() {
     createTenant,
     createRental,
     createHouse,
+    fetchTenantsByHouseId,
   };
 }
 

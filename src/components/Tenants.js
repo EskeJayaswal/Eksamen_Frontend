@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-function Tenant({ tenant: { id } }) {
+function Tenant({ tenant: { id, name, phone, job } }) {
   return (
     <tr>
-      <Link to={`/tenant/${id}`}>
-        <button>Get Rentals</button>
-      </Link>
+      <td>{id}</td>
+      <td>{name}</td>
+      <td>{phone}</td>
+      <td>{job}</td>
     </tr>
   );
 }

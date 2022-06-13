@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import facade from "../apiFacade";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const Housedetails = () => {
   const [house, setHouse] = useState([]);
